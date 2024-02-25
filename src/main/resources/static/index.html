@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temperature Monitor</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stomp-websocket/lib/stomp.min.js"></script>
+    <script>
+        var stompClient = null;
+        function connect() {
+            var socket = new SockJS('/temperature-websocket');
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, function (frame) {
+                console.log('Connected: ' + frame);
+                stompClient.subscribe('/topic/temperature', function (temperature) {
+                    showTemperature(JSON.parse(temperature.body).value);
+                });
+            });
+        }
+        function showTemperature(message) {
+            document.getElementById('temperature').innerHTML = message;
+        }
+        window.onload = connect;
+    </script>
+</head>
+<body>
+<div>Temperature: <span id="temperature"></span>°C</div>
+</body>
+</html>
