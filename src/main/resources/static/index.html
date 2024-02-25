@@ -21,10 +21,18 @@
         }
 
         function updateTemperature(value) {
-            // Обновить DOM с новым значением температуры
+
+            const maxTemperature = 100; // Максимальное значение температуры
+            let normalizedValue = value;
+
+            if (value > maxTemperature) {
+                normalizedValue = maxTemperature;
+            }
+
+            let liquidHeight = (normalizedValue / maxTemperature) * 90;
+
+            document.getElementById('liquid').style.height = liquidHeight + '%';
             document.getElementById('temperature').innerHTML = value + '°C';
-            let liquidHeight = value; // Преобразовать значение температуры в высоту жидкости
-            liquid.style.height = liquidHeight + '%';
         }
         window.onload = connect;
 
