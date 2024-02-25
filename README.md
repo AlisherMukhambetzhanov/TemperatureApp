@@ -13,3 +13,6 @@ http://localhost:8080/api/temperature/1
 }
 
 значение "temperature" можно изменить на желаемую температуру
+
+![image](https://github.com/AlisherMukhambetzhanov/TemperatureApp/assets/53463211/b051c37e-d10d-4542-bc05-1912a5dedbff)
+
