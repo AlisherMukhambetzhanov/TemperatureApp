@@ -6,19 +6,23 @@
     <script src="https://cdn.jsdelivr.net/npm/stomp-websocket/lib/stomp.min.js"></script>
     <script>
         let stompClient = null;
+
         function connect() {
             let socket = new SockJS('/temperature-websocket');
             stompClient = Stomp.over(socket);
             stompClient.connect({}, function (frame) {
-                console.log('Connected: ' + frame);
-                stompClient.subscribe('/topic/temperature', function (temperature) {
-                    console.log(temperature)
-                    showTemperature(JSON.parse(temperature.body).value);
+            console.log('Connected: ' + frame);
+            stompClient.subscribe('/topic/temperature', function (temperature) {
+                let parsedData = JSON.parse(temperature.body);
+                let temperatureValue = parsedData.temperature;
+                updateTemperature(temperatureValue);
                 });
             });
         }
-        function showTemperature(message) {
-            document.getElementById('temperature').innerHTML = message;
+
+        function updateTemperature(value) {
+            // Обновить DOM с новым значением температуры
+            document.getElementById('temperature').innerHTML = value;
         }
         window.onload = connect;
     </script>

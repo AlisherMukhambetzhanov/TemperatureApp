@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS temperature (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    temperature_value DOUBLE NOT NULL
+);

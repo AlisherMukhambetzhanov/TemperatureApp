@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,6 +11,8 @@ public class Temperature {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @JsonProperty("temperature")
     private double temperatureValue;
 
     public Long getId() {
@@ -20,11 +23,11 @@ public class Temperature {
         this.id = id;
     }
 
-    public double getValue() {
+    public double getTemperatureValue() {
         return temperatureValue;
     }
 
-    public void setValue(double value) {
+    public void setTemperatureValue(double value) {
         this.temperatureValue = value;
     }
 }
