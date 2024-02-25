@@ -2,6 +2,8 @@
 
 ./mvnw spring-boot:run
 
+http://localhost:8080
+
 через постман нужно будет посылать put запрос на
 
 http://localhost:8080/api/temperature/1
