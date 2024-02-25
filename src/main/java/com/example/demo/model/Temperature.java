@@ -10,7 +10,7 @@ public class Temperature {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private double value;
+    private double temperatureValue;
 
     public Long getId() {
         return id;
@@ -21,10 +21,10 @@ public class Temperature {
     }
 
     public double getValue() {
-        return value;
+        return temperatureValue;
     }
 
     public void setValue(double value) {
-        this.value = value;
+        this.temperatureValue = value;
     }
 }
