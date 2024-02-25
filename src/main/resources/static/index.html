@@ -22,7 +22,9 @@
 
         function updateTemperature(value) {
             // Обновить DOM с новым значением температуры
-            document.getElementById('temperature').innerHTML = value;
+            document.getElementById('temperature').innerHTML = value + '°C';
+            let liquidHeight = value; // Преобразовать значение температуры в высоту жидкости
+            liquid.style.height = liquidHeight + '%';
         }
         window.onload = connect;
 
@@ -38,9 +40,40 @@
 
 // При загрузке страницы запрашиваем начальное значение температуры и устанавливаем WebSocket соединение
         window.onload = fetchInitialTemperature;
+
+
     </script>
+    <style>
+        .thermometer {
+          height: 300px;
+          width: 50px;
+          border: 3px solid black;
+          border-radius: 25px;
+          position: relative;
+          background: #e0e0e0;
+        }
+
+        .thermometer .liquid {
+          position: absolute;
+          bottom: 0;
+          background: red;
+          width: 100%;
+          transition: height 0.5s;
+          border-radius: 0 0 25px 25px;
+        }
+
+        .thermometer .temperature {
+          position: absolute;
+          width: 100%;
+          text-align: center;
+          bottom: 5px;
+        }
+    </style>
 </head>
 <body>
-<div>Temperature: <span id="temperature"></span>°C</div>
+<div class="thermometer" id="thermometer">
+    <div class="liquid" style="height: 0%;" id="liquid"></div>
+    <div class="temperature" id="temperature">0°C</div>
+</div>
 </body>
 </html>
