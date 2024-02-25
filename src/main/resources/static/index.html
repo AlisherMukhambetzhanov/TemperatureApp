@@ -25,6 +25,19 @@
             document.getElementById('temperature').innerHTML = value;
         }
         window.onload = connect;
+
+        function fetchInitialTemperature() {
+            fetch('/api/temperature/1')
+                .then(response => response.json())
+                .then(data => {
+                    updateTemperature(data.temperature);
+                    connect(); // Устанавливаем WebSocket соединение после получения начального значения
+                })
+                .catch(error => console.error('Error fetching initial temperature:', error));
+        }
+
+// При загрузке страницы запрашиваем начальное значение температуры и устанавливаем WebSocket соединение
+        window.onload = fetchInitialTemperature;
     </script>
 </head>
 <body>

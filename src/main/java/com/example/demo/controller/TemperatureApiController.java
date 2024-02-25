@@ -34,5 +34,13 @@ public class TemperatureApiController {
         messagingTemplate.convertAndSend("/topic/temperature", updatedTemperature);
         return ResponseEntity.ok(updatedTemperature);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Temperature> getTemperature(@PathVariable Long id) {
+        return temperatureRepository.findById(id)
+                .map(temperature -> ResponseEntity.ok(temperature))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 }
 
